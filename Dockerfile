@@ -2,7 +2,7 @@
 FROM alpine:latest AS downloaded
 WORKDIR /downloads
 
-ARG VERSION="1.16.5"
+ARG VERSION="latest"
 ARG RELEASE_TYPE="stable"
 
 RUN wget "https://cdn.vintagestory.at/gamefiles/${RELEASE_TYPE}/vs_server_${VERSION}.tar.gz"
@@ -17,5 +17,5 @@ COPY --from=downloaded /downloads /vintagestory
 
 VOLUME [ "/vintagestory/data" ]
 
-EXPOSE 42420/tcp
+EXPOSE 25565/tcp
 CMD mono VintagestoryServer.exe --dataPath ./data
